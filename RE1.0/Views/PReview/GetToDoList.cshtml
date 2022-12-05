@@ -1,0 +1,107 @@
+﻿@model IEnumerable<consumingWebAPI.Models.ToDo>
+
+<head>
+    <style type="text/css">
+
+        tbody tr:hover {
+            background-color: #c9cfe4;
+        }
+       
+        .center {
+            width: 1000px;
+            padding: 20px;
+        }
+
+        body {
+            height: 100%;
+            background: #333;
+        }
+        .neon {
+            color: #fff;
+            font-size: 50px;
+            font-family: Beon;
+            animation: flash 5s infinite;
+        }
+
+        @@keyframes flash {
+            0%, 100% {
+                text-shadow: 0 0 10px #0c2be0, 0 0 20px #0c2be0, 0 0 30px #0c2be0, 0 0 40px #a7d3e4, 0 0 70px #a7d3e4, 0 0 80px #a7d3e4, 0 0 100px #a7d3e4, 0 0 150px #a7d3e4;
+            }
+
+            50% {
+                text-shadow: 0 0 10px #0c2be0, 0 0 20px #a7d3e4, 0 0 30px #a7d3e4, 0 0 40px #a7d3e4;
+            }
+        }
+
+        .fonts {
+            font-family: 'Raleway', sans-serif;
+        }
+       
+    </style>
+</head>
+
+   <div class="container center ">
+            @{
+                ViewData["Title"] = "GetToDoList";
+            }
+
+            <div class="neon fonts center" style="left :100px"  >
+                <h1 >Tasks</h1>
+            </div>
+
+           <table class="table center " style="background-color:aliceblue;">
+                <thead  style="background-color:cornflowerblue">
+                    <tr style="color:black">
+                        <th >
+                            @Html.DisplayNameFor(model => model.ToDoId)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Title)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.description)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Category)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.AssignedDate)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DueDate)
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td style="font-weight:600">
+                                @Html.DisplayFor(modelItem => item.ToDoId)
+                            </td>
+                            <td style="font-weight:600">
+                                @Html.DisplayFor(modelItem => item.Title)
+                            </td>
+                            <td style="font-weight:600">
+                                @Html.DisplayFor(modelItem => item.description)
+                            </td>
+                            <td style="font-weight:600">
+                                @Html.DisplayFor(modelItem => item.Category)
+                            </td>
+                            <td style="font-weight:600">
+                                @Html.DisplayFor(modelItem => item.AssignedDate)
+                            </td>
+                            <td style="font-weight:600">
+                                @Html.DisplayFor(modelItem => item.DueDate)
+                            </td>
+                            <td style="font-weight:600; color : black">
+                                @Html.ActionLink("GiveReview", "GetTaskReviewbytheirID", new { ToDoId = item.ToDoId })
+                                @*@Html.ActionLink("ReviewList", "GetTaskReviewbytheirID", new { ToDoId = item.ToDoId }) |*@
+                                @*@Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>

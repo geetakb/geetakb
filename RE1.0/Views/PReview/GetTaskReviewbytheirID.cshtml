@@ -1,0 +1,113 @@
+﻿@model IEnumerable<consumingWebAPI.Models.TaskReview>
+
+<head>
+    <style type="text/css">
+
+        tbody tr:hover {
+            background-color: #c9cfe4;
+        }
+        .center {
+            width: 1000px;
+            padding: 20px;
+        }
+
+        body {
+            height: 100%;
+            background: #333;
+        }
+        .neon {
+            color: #fff;
+            font-size: 50px;
+            font-family: Beon;
+            animation: flash 5s infinite;
+        }
+
+        @@keyframes flash {
+            0%, 100% {
+                text-shadow: 0 0 10px #0c2be0, 0 0 20px #0c2be0, 0 0 30px #0c2be0, 0 0 40px #a7d3e4, 0 0 70px #a7d3e4, 0 0 80px #a7d3e4, 0 0 100px #a7d3e4, 0 0 150px #a7d3e4;
+            }
+
+            50% {
+                text-shadow: 0 0 10px #0c2be0, 0 0 20px #a7d3e4, 0 0 30px #a7d3e4, 0 0 40px #a7d3e4;
+            }
+        }
+
+        .fonts {
+            font-family: 'Raleway', sans-serif;
+        }
+    </style>
+</head>
+<div class="container center">
+    @{
+        ViewData["Title"] = "GetTaskReviewbytheirID";
+    }
+    <div class="neon fonts">
+        <h1>Task Review</h1>
+    </div>
+        <p style="font-weight: 600; color: antiquewhite">
+            @Html.ActionLink("Add Review", "Create")
+        </p>
+    
+   
+    <table class="table center" style="background-color:aliceblue;">
+        <thead style="background-color: cornflowerblue">
+            <tr style="color:antiquewhite">
+                <th>
+                    @Html.DisplayNameFor(model => model.ReviewId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TD.Title)
+
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TD.description)
+
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Rating)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Comment)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ToDoId)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td style="font-weight:600">
+                        @Html.DisplayFor(modelItem => item.ReviewId)
+                    </td>
+                    <td style="font-weight:600">
+                        @Html.DisplayFor(modelItem => item.TD.Title)
+                    </td>
+                    <td style="font-weight:600">
+                        @Html.DisplayFor(modelItem => item.TD.description)
+                    </td>
+                    <td style="font-weight:600">
+                        @Html.DisplayFor(modelItem => item.Rating)
+                    </td>
+                    <td style="font-weight:600">
+                        @Html.DisplayFor(modelItem => item.Comment)
+                    </td>
+                    <td style="font-weight:600">
+                        @Html.DisplayFor(modelItem => item.ToDoId)
+                    </td>
+                    <td style="font-weight:600">
+                        @Html.ActionLink("Add Review", "Create") |
+                        @Html.ActionLink("Edit", "Edit", new { ReviewID = item.ReviewId }) |
+                        @*@Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |*@
+                        @Html.ActionLink("Delete", "Delete", new { ReviewID = item.ReviewId })
+
+
+                      
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
